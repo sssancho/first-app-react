@@ -22,6 +22,12 @@ export default function App() {
     ]);
   }
 
+  function deleteGoalHandler(id){
+    setCourseGoals((currentCorseGoals) => {
+      return currentCorseGoals.filter((goal) => goal.id !== id);
+    });
+  }
+
 
   return (
     <View style={styles.appContainer}>
@@ -32,7 +38,12 @@ export default function App() {
         <FlatList 
           data={courseGoals} 
           renderItem={itemData => {
-            return <GoalItem text={itemData.item.text} />;
+            return (
+            <GoalItem 
+            text={itemData.item.text} 
+            onDeleteItem={deleteGoalHandler} 
+            id={itemData.item.id}/>
+            );
         }} 
           keyExtractor={(item, index) => {
             return item.id
