@@ -1,8 +1,10 @@
 import { StyleSheet, View, Text, Pressable } from 'react-native'
-
+import { StatusBar } from 'expo-status-bar';
 
 function GoalItem(props){
     return (
+        <>
+        <StatusBar style='light'/>
         <View style={styles.goalItem}>
             <Pressable 
                 android_ripple={{color: '#dddddd'}} 
@@ -12,7 +14,7 @@ function GoalItem(props){
                 <Text style={styles.goalText}>{props.text}</Text>
             </Pressable>
         </View>
-        
+        </>
     );
 }
 

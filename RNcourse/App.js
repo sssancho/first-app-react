@@ -7,6 +7,7 @@ import {
   Button,
   FlatList,
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 
 export default function App() {
@@ -17,11 +18,16 @@ export default function App() {
     setModalIsVisible(true);
   }
 
+  function endAddGoalHandler(){
+    setModalIsVisible(false);
+  }
+
   function addGoalHandler(enteredGoalText) {
     setCourseGoals(currentCorseGoals => [
       ...currentCorseGoals, 
       {text: enteredGoalText, id: Math.random().toString()}
     ]);
+    endAddGoalHandler();
   }
 
   function deleteGoalHandler(id){
@@ -32,23 +38,30 @@ export default function App() {
 
 
   return (
+    <>
+    <StatusBar style='light' />
     <View style={styles.appContainer}>
       <Button 
         title="Add New Goal"
-        color="#5e0acc" 
+        color="#a065ec" 
         onPress={startAddGoalHandler}
       />
 
-     <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} />
-      <View  style={styles.goalsContainer}>
+     <GoalInput 
+        visible={modalIsVisible} 
+        onAddGoal={addGoalHandler} 
+        onCancel={endAddGoalHandler}
+      />
+      <View style={styles.goalsContainer}>
         <FlatList 
           data={courseGoals} 
           renderItem={itemData => {
             return (
-            <GoalItem 
-            text={itemData.item.text} 
-            onDeleteItem={deleteGoalHandler} 
-            id={itemData.item.id}/>
+              <GoalItem 
+                text={itemData.item.text} 
+                onDeleteItem={deleteGoalHandler} 
+                id={itemData.item.id}
+              />
             );
         }} 
           keyExtractor={(item, index) => {
@@ -56,8 +69,8 @@ export default function App() {
           }}
           alwaysBounceVertical={false} />
       </View>
-
     </View>
+    </>
   )
 }
 
@@ -65,7 +78,8 @@ const styles = StyleSheet.create({
   appContainer:{
     flex: 1,
     paddingTop: 50,
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
+    backgroundColor: '#1e085a'
   },
 
 
