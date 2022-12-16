@@ -42,7 +42,7 @@ export default function App() {
     <StatusBar style='light' />
     <View style={styles.appContainer}>
       <Button 
-        title="Add New Goal"
+        title="Добавить задания"
         color="#a065ec" 
         onPress={startAddGoalHandler}
       />

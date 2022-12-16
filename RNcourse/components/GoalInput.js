@@ -32,17 +32,17 @@ function GoalInput(props){
             />
             <TextInput 
                 style={styles.textInput} 
-                placeholder="Your goals" 
+                placeholder="Задания" 
                 onChangeText={goalInputHandler}
                 value={enteredGoalText}
             />
             <View style={styles.buttonContainer}>
               <View style={styles.button}>
-                <Button title="Add goal" onPress={addGoalHandler} color="#b180f0"/>
+                <Button title="Добавить" onPress={addGoalHandler} color="#b180f0"/>
               </View>
 
               <View style={styles.button}>
-                <Button title='Cancel' onPress={props.onCancel} color="#f31282"/>
+                <Button title='Отменить' onPress={props.onCancel} color="#f31282"/>
               </View>
             </View>
         </View>
